@@ -9,7 +9,7 @@ public class Stretch : MonoBehaviour
 
     [SerializeField]private float animTime;
     private float firstMousePos;
-    [SerializeField]private float movementAmount;
+    [SerializeField] private float movementAmount;
     [SerializeField] private float min = 0f;
     [SerializeField] private float max = 1f;
     // Start is called before the first frame update
@@ -23,10 +23,12 @@ public class Stretch : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            
             firstMousePos = Input.mousePosition.x;
         }
         else if (Input.GetMouseButton(0))
         {
+            
             movementAmount = Input.mousePosition.x - firstMousePos;
             if (movementAmount <= 0)
             {
@@ -34,14 +36,13 @@ public class Stretch : MonoBehaviour
                 movementAmount = movementAmount / 100;
                 animator.SetFloat("animTime",movementAmount);
             }
-                // movementAmount = Mathf.Clamp(movementAmount, min, max);
-            
-            
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            movementAmount = 0f;
-            animator.SetFloat("animTime",movementAmount );
+            movementAmount = 1 - movementAmount;
+            animator.Play("Armature|Release_Stick",0,movementAmount/4);
+            
+
         }
 
         
