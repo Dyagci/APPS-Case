@@ -14,6 +14,7 @@ public class Stretch : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera stickCam;
     [SerializeField] private CinemachineVirtualCamera playerCam;
     public GameObject player;
+    
 
     private bool isThrown;
     // Start is called before the first frame update
