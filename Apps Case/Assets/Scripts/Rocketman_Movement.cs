@@ -16,7 +16,7 @@ public class Rocketman_Movement : MonoBehaviour
     private float firstMousePos;
     [SerializeField] private float movementAmount;
 
-    private Vector3 move;
+    [SerializeField]private Vector3 move;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,11 +44,11 @@ public class Rocketman_Movement : MonoBehaviour
             }
             else if (Input.GetMouseButton(0))
             {
-                rb.velocity = Vector3.zero;
+                //rb.velocity = Vector3.zero;
                 movementAmount = Input.mousePosition.x - firstMousePos;
-                movementAmount = Mathf.Clamp(movementAmount/20, -3, 3);
+                movementAmount = Mathf.Clamp(movementAmount/20, -1, 1);
                 move = new Vector3(movementAmount, 0, 0);
-                move = (move + Vector3.forward).normalized;
+                move = (move/2 + Vector3.forward+Physics.gravity/100);
                 animTime = animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
                 animTime = Mathf.Clamp(animTime, 0, 1);
             }
@@ -81,6 +81,7 @@ public class Rocketman_Movement : MonoBehaviour
 
     private void Movement()
     {
+        
         rb.velocity = move * Time.deltaTime * playerSpeed*100;
     }
 }
