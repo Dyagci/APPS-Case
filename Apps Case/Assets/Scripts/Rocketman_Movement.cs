@@ -20,7 +20,7 @@ public class Rocketman_Movement : MonoBehaviour
     [SerializeField]private Vector3 move;
     private bool isAlive;
     public Button replayButton;
-    public GameManager manager;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -28,9 +28,10 @@ public class Rocketman_Movement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         isGliding = false;
-        eulerRotation = new Vector3(180*2, 0, 0);
+        eulerRotation = new Vector3(180*4, 0, 0);
         controller = GetComponent<CharacterController>();
         isAlive = true;
+        
     }
 
     // Update is called once per frame
@@ -51,9 +52,9 @@ public class Rocketman_Movement : MonoBehaviour
             {
                 
                 movementAmount = Input.mousePosition.x - firstMousePos;
-                movementAmount = Mathf.Clamp(movementAmount/20, -1, 1);
+                movementAmount = Mathf.Clamp(movementAmount/20, -2, 2);
                 move = new Vector3(movementAmount, 0, 0);
-                move = (move + Vector3.forward+Physics.gravity/100);
+                move = (move + Vector3.forward*2+Physics.gravity/20);
                 animTime = animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
                 animTime = Mathf.Clamp(animTime, 0, 1);
             }
@@ -70,7 +71,7 @@ public class Rocketman_Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
+       
         if (isGliding && isAlive)
         {
             Movement();
@@ -79,6 +80,8 @@ public class Rocketman_Movement : MonoBehaviour
         {
             Quaternion deltaRotation = Quaternion.Euler(eulerRotation* Time.fixedDeltaTime);
             rb.MoveRotation(rb.rotation*deltaRotation);
+            Vector3 grav = Physics.gravity/10 + rb.velocity;
+            rb.velocity = grav;
         }
     }
 
@@ -89,7 +92,7 @@ public class Rocketman_Movement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name == "Plane")
+        if (collision.gameObject.CompareTag("Plane"))
         {
             isAlive = false;
             replayButton.gameObject.SetActive(true);

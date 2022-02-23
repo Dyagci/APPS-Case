@@ -53,7 +53,7 @@ public class Stretch : MonoBehaviour
     public void ThrowPlayer()
     {
         player.GetComponent<Rigidbody>().isKinematic = false;
-        player.GetComponent<Rigidbody>().AddForce(Vector3.forward*2000*(1-movementAmount));
+        player.GetComponent<Rigidbody>().AddForce(Vector3.forward*2000*(1-movementAmount)+Vector3.up*(1-movementAmount)*1000);
         player.GetComponent<Rocketman_Movement>().isThrown = true;
         stickCam.Priority = 0;
         playerCam.Priority = 1;
