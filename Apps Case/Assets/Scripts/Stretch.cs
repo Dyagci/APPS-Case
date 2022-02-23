@@ -14,8 +14,6 @@ public class Stretch : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera stickCam;
     [SerializeField] private CinemachineVirtualCamera playerCam;
     public GameObject player;
-    
-
     private bool isThrown;
     // Start is called before the first frame update
     void Start()
@@ -55,7 +53,7 @@ public class Stretch : MonoBehaviour
     public void ThrowPlayer()
     {
         player.GetComponent<Rigidbody>().isKinematic = false;
-        player.GetComponent<Rigidbody>().AddForce(Vector3.forward*2000);
+        player.GetComponent<Rigidbody>().AddForce(Vector3.forward*2000*(1-movementAmount));
         player.GetComponent<Rocketman_Movement>().isThrown = true;
         stickCam.Priority = 0;
         playerCam.Priority = 1;

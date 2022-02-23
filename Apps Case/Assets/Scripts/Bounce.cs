@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cube : MonoBehaviour
+public class Bounce : MonoBehaviour
 {
     [SerializeField] private float jumpAmount;
 
@@ -23,6 +23,6 @@ public class Cube : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Vector3 force = (Vector3.forward*10 + Vector3.up*jumpAmount).normalized;
-        other.gameObject.GetComponent<Rigidbody>().AddForce(force*1000);
+        other.gameObject.GetComponent<Rigidbody>().AddForce(force*2000);
     }
 }
