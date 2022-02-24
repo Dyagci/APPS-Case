@@ -7,30 +7,31 @@ using UnityEngine.UI;
 
 public class Rocketman_Movement : MonoBehaviour
 {
+    [SerializeField] private float movementAmount;
+    [SerializeField] private Vector3 move;
+    [SerializeField] private float playerSpeed;
+    [SerializeField] private float animTime;
+    
+    private bool isGliding;
     private Rigidbody rb;
     private Animator animator;
-    public bool isThrown;
-    [SerializeField] private float animTime;
     private Vector3 eulerRotation;
-    private bool isGliding;
-    [SerializeField] private float playerSpeed;
     private float firstMousePos;
-    [SerializeField] private float movementAmount;
-    [SerializeField]private Vector3 move;
     private bool isAlive;
+    
+    public bool isThrown;
     public Button replayButton;
     public GameObject rotater;
     
     // Start is called before the first frame update
     void Start()
     {
-        isThrown = false;
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+        isThrown = false;
         isGliding = false;
         eulerRotation = new Vector3(180*4, 0, 0);
         isAlive = true;
-        
     }
 
     // Update is called once per frame
@@ -49,11 +50,10 @@ public class Rocketman_Movement : MonoBehaviour
             }
             else if (Input.GetMouseButton(0))
             {
-                
                 movementAmount = Input.mousePosition.x - firstMousePos;
                 movementAmount = Mathf.Clamp(movementAmount/20, -2, 2);
                 move = new Vector3(movementAmount, 0, 0);
-                move = (move + Vector3.forward*2+Physics.gravity/20);
+                move = (move + Vector3.forward*3+Physics.gravity/20);
                 animTime = animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
                 animTime = Mathf.Clamp(animTime, 0, 1);
             }
@@ -63,9 +63,7 @@ public class Rocketman_Movement : MonoBehaviour
                 animator.SetBool("isClicked",false);
                 isGliding = false;
             }
-
         }
-        
     }
 
     private void FixedUpdate()

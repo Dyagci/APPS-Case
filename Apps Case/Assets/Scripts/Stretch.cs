@@ -6,16 +6,16 @@ using UnityEngine;
 
 public class Stretch : MonoBehaviour
 {
-    private Animator animator;
-    private float firstMousePos;
     [SerializeField] private float movementAmount;
     [SerializeField] private float min = 0f;
     [SerializeField] private float max = 1f;
     [SerializeField] private CinemachineVirtualCamera stickCam;
     [SerializeField] private CinemachineVirtualCamera playerCam;
+    
     public GameObject player;
+    private Animator animator;
+    private float firstMousePos;
     private bool isThrown;
-    // Start is called before the first frame update
     void Start()
     {
         isThrown = false;
@@ -53,12 +53,10 @@ public class Stretch : MonoBehaviour
     public void ThrowPlayer()
     {
         player.GetComponent<Rigidbody>().isKinematic = false;
-        player.GetComponent<Rigidbody>().AddForce(Vector3.forward*2000*(1-movementAmount)+Vector3.up*(1-movementAmount)*1000);
+        player.GetComponent<Rigidbody>().AddForce(Vector3.forward*4000*(1-movementAmount)+Vector3.up*(1-movementAmount)*2000);
         player.GetComponent<Rocketman_Movement>().isThrown = true;
         stickCam.Priority = 0;
         playerCam.Priority = 1;
         isThrown = true;
-
     }
-    
 }

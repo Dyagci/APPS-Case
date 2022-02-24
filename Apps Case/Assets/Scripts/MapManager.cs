@@ -5,16 +5,15 @@ using UnityEngine;
 
 public class MapManager : MonoBehaviour
 {
+    [SerializeField] float lowestX;
+    [SerializeField] private float lowestZ;
+    [SerializeField] private float highestX;
     public HashSet<GameObject> leftestPlanes;
     public HashSet<GameObject> rightestPlanes;
     public HashSet<GameObject> backestPlanes;
     public List<GameObject> allPlanes;
     public Player player;
-    [SerializeField] float lowestX;
-    [SerializeField] private float lowestZ;
-    [SerializeField] private float highestX;
-    public List<GameObject> rightest;
-    public List<GameObject> leftest;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,17 +27,15 @@ public class MapManager : MonoBehaviour
     void Update()
     {
         SortPlanes();
-        if (Math.Abs(Math.Abs(player.transform.position.x) -Math.Abs(highestX))<200 && player.xDistanceTraveled<-100)
+        if (Math.Abs(Math.Abs(player.transform.position.x) -Math.Abs(highestX))<400 && player.xDistanceTraveled<-200)
         {
-            leftest.Clear();
             foreach (GameObject obj in leftestPlanes)
             {
                 if (obj.transform.position.x == lowestX)
                 {
                     Vector3 newPos = obj.transform.position;
                     newPos.x += 1200;
-                    obj.transform.position = newPos; 
-                    leftest.Add(obj);
+                    obj.transform.position = newPos;
                 }
             }
             leftestPlanes.Clear();
@@ -46,26 +43,23 @@ public class MapManager : MonoBehaviour
             player.startPos = player.transform.position;
 
         }
-        else if (Math.Abs(Math.Abs(player.transform.position.x) -Math.Abs(lowestX))<200 && player.xDistanceTraveled>100)
+        else if (Math.Abs(Math.Abs(player.transform.position.x) -Math.Abs(lowestX))<400 && player.xDistanceTraveled>200)
         {
-            rightest.Clear();
             foreach (GameObject obj in rightestPlanes)
             {
                 if (obj.transform.position.x == highestX)
                 {
                     Vector3 newPos = obj.transform.position;
                     newPos.x -= 1200;
-                    obj.transform.position = newPos; 
-                    rightest.Add(obj);
+                    obj.transform.position = newPos;
                 }
-                
             }
             rightestPlanes.Clear();
             player.xDistanceTraveled = 0;
             player.startPos = player.transform.position;
 
         }
-        if (-player.zDistanceTraveled > 395 && player.zDistanceTraveled < 0)
+        if (-player.zDistanceTraveled > 400 && player.zDistanceTraveled < 0)
         {
             foreach (GameObject obj in backestPlanes)
                 {
@@ -108,7 +102,6 @@ public class MapManager : MonoBehaviour
             }
             else
             {
-                
             }
             if (allPlanes[i].transform.position.x == lowestX)
             {
