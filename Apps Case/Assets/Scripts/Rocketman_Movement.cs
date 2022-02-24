@@ -14,12 +14,12 @@ public class Rocketman_Movement : MonoBehaviour
     private Vector3 eulerRotation;
     private bool isGliding;
     [SerializeField] private float playerSpeed;
-    private CharacterController controller;
     private float firstMousePos;
     [SerializeField] private float movementAmount;
     [SerializeField]private Vector3 move;
     private bool isAlive;
     public Button replayButton;
+    public GameObject rotater;
     
     // Start is called before the first frame update
     void Start()
@@ -29,7 +29,6 @@ public class Rocketman_Movement : MonoBehaviour
         animator = GetComponent<Animator>();
         isGliding = false;
         eulerRotation = new Vector3(180*4, 0, 0);
-        controller = GetComponent<CharacterController>();
         isAlive = true;
         
     }
@@ -39,14 +38,14 @@ public class Rocketman_Movement : MonoBehaviour
     {
         if (isThrown&&isAlive)
         {
-            this.transform.parent = null;
+            this.transform.parent.parent = null;
             if (Input.GetMouseButtonDown(0))
             {
                 isGliding = true;
                 animator.SetBool("isClicked",true);
                 animator.Play("Armature|1_Open_wings_2");
                 firstMousePos = Input.mousePosition.x;
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(90f, 90, 90), Time.time * 1f);
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(90f, 0, 0), Time.time * 1f);
             }
             else if (Input.GetMouseButton(0))
             {
@@ -75,6 +74,7 @@ public class Rocketman_Movement : MonoBehaviour
         if (isGliding && isAlive)
         {
             Movement();
+            rotater.transform.localRotation = Quaternion.Slerp(Quaternion.Euler(0, 0, 0), Quaternion.Euler(0, -movementAmount*5, 0), Time.time * 0.2f);
         }
         else if(isThrown && isAlive)
         {

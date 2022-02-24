@@ -489,6 +489,37 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6919bfae6104c7b439b3ffa02c562ffe, type: 3}
+--- !u!1 &49525980
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 49525981}
+  m_Layer: 0
+  m_Name: Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &49525981
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49525980}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.000091137874, y: 0.0064999396, z: -0.00046999753}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1939037596}
+  m_Father: {fileID: 436710964}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &52671619 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7771473346302091052, guid: 6919bfae6104c7b439b3ffa02c562ffe, type: 3}
@@ -1590,6 +1621,11 @@ MonoBehaviour:
   - {fileID: 1174249188}
   - {fileID: 617699195}
   player: {fileID: 1939037601}
+  lowestX: 0
+  lowestZ: 0
+  highestX: 0
+  rightest: []
+  leftest: []
 --- !u!1 &214745251 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7771473346302091052, guid: 6919bfae6104c7b439b3ffa02c562ffe, type: 3}
@@ -10145,7 +10181,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961248051}
   m_LocalRotation: {x: 0.23274848, y: -0, z: -0, w: 0.972537}
-  m_LocalPosition: {x: -109.8, y: 22.28, z: -11.343}
+  m_LocalPosition: {x: -0.009113788, y: 22.279995, z: -11.389999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2031880783}
@@ -12402,6 +12438,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpAmount: 10
+--- !u!1 &1231556321 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 129350255495253916, guid: bc017545ff05c4ecc9db8ee65f7c7728, type: 3}
+  m_PrefabInstance: {fileID: 1458176155}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1234443400
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14996,7 +15037,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 436710964}
+    m_TransformParent: {fileID: 49525981}
     m_Modifications:
     - target: {fileID: -6222470381064813708, guid: bc017545ff05c4ecc9db8ee65f7c7728, type: 3}
       propertyPath: m_UpdateWhenOffscreen
@@ -15024,15 +15065,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: bc017545ff05c4ecc9db8ee65f7c7728, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.00009113816
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: bc017545ff05c4ecc9db8ee65f7c7728, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0065
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: bc017545ff05c4ecc9db8ee65f7c7728, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.00047
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: bc017545ff05c4ecc9db8ee65f7c7728, type: 3}
       propertyPath: m_LocalRotation.w
@@ -15065,6 +15106,10 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: bc017545ff05c4ecc9db8ee65f7c7728, type: 3}
       propertyPath: m_Name
       value: Rocketman_Animated
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: bc017545ff05c4ecc9db8ee65f7c7728, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc017545ff05c4ecc9db8ee65f7c7728, type: 3}
@@ -20319,24 +20364,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: bc017545ff05c4ecc9db8ee65f7c7728, type: 3}
   m_PrefabInstance: {fileID: 1458176155}
   m_PrefabAsset: {fileID: 0}
---- !u!143 &1939037597
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1939037595}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1939037598
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -20371,6 +20398,7 @@ MonoBehaviour:
   movementAmount: 0
   move: {x: 0, y: 0, z: 0}
   replayButton: {fileID: 580219896}
+  rotater: {fileID: 1231556321}
 --- !u!135 &1939037600
 SphereCollider:
   m_ObjectHideFlags: 0
